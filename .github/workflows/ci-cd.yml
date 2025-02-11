@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: frontend  # Adjust based on your frontend folder location
+        working-directory:  monorepo/frontend # Adjust based on your frontend folder location
 
     steps:
       - name: Checkout code
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: backend  # Adjust based on your backend folder location
+        working-directory: monorepo/backend  # Adjust based on your backend folder location
 
     steps:
       - name: Checkout code
