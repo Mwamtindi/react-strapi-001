@@ -1,63 +1,62 @@
-
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Blog = ({ posts }) => {
   const [visible, setVisible] = useState(7);
+  const strapiUrl = "http://localhost:1337"; // Change this to your Strapi URL
 
   const onLoadMoreClick = () => {
     setVisible((v) => v + 6);
   };
 
- // let   headingText = "Blog Posts";
-
-
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
       <h1 style={{ textAlign: "center", color: "#333" }}>Blog Posts</h1>
-      
-      {/* Blog Posts Container */}
-      <div style={{ 
-        display: "flex", 
-        flexWrap: "wrap", 
-        justifyContent: "center", 
-        gap: "20px",
-        overflowX: "auto", // Allows scrolling if too many blogs
-        padding: "10px"
-      }}>
-        {posts.data.slice(0, visible).map((post, index) => (
-          <Link to={`/blog/${post.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-          <div
-            key={index}
-            style={{
-              width: "300px", // Fixed width for better horizontal layout
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              overflow: "hidden",
-              backgroundColor: "#f9f9f9",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+          overflowX: "auto",
+          padding: "10px",
+        }}
+      >
+        {posts.data.slice(0, visible).map((post) => (
+          <Link
+            key={post.id}
+            to={`/blog/${post.id}`}
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            <a href={post.url} style={{ textDecoration: "none", color: "inherit" }}>
-              {/*<div
+            <div
+              style={{
+                width: "300px",
+                border: "1px solid #ddd",
+                borderRadius: "8px",
+                overflow: "hidden",
+                backgroundColor: "#f9f9f9",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <div
                 style={{
                   height: "200px",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  backgroundImage: `url(${post.image})`,
+                  backgroundImage: `url(${strapiUrl}${post.image?.url})`, // Ensure Strapi URL is prefixed
                 }}
-              >
-              </div>*/}
-             <img src={`http://localhost:1337${post.url}`} alt="Blog Image" />
+              ></div>
+
               <div style={{ padding: "15px" }}>
-                <p style={{ fontSize: "12px", color: "#888" }}>{post.publishedat}</p>
-                <h2 style={{ fontSize: "18px", margin: "10px 0" }}>{post.title}</h2>
-                {post.featured && post.description && (
-                  <p style={{ fontSize: "14px", color: "#555" }}>{post.description}</p>
-                )}
+                <p style={{ fontSize: "12px", color: "#888" }}>
+                  {new Date(post.publishedat).toLocaleString()}
+                </p>
+                <h2 style={{ fontSize: "18px", margin: "10px 0" }}>
+                  {post.title}
+                </h2>
               </div>
-            </a>
-          </div>
+            </div>
           </Link>
         ))}
       </div>
@@ -77,8 +76,8 @@ const Blog = ({ posts }) => {
               cursor: "pointer",
               transition: "0.3s",
             }}
-            onMouseOver={(e) => e.target.style.backgroundColor = "#0056b3"}
-            onMouseOut={(e) => e.target.style.backgroundColor = "#007bff"}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
           >
             Load More
           </button>

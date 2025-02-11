@@ -1,5 +1,4 @@
 import React from "react";
-// import { css } from "styled-components/macro"; //eslint-disable-line
 
 import BlogIndex from "./pages/BlogIndex.jsx";
 import Blog from "./pages/Blog.jsx";
