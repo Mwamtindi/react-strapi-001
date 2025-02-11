@@ -14,12 +14,26 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          cache-dependency-path: monorepo/frontend/package-lock.json  # Ensure correct path
+          cache-dependency-path: |
+            monorepo/frontend/package-lock.json
+            monorepo/backend/package-lock.json
 
-      - name: Install dependencies
+      # Install dependencies for frontend
+      - name: Install frontend dependencies
         working-directory: monorepo/frontend
         run: npm install
 
-      - name: Build project
+      # Install dependencies for backend
+      - name: Install backend dependencies
+        working-directory: monorepo/backend
+        run: npm install
+
+      # Build frontend
+      - name: Build frontend
         working-directory: monorepo/frontend
+        run: npm run build
+
+      # Build backend (if necessary)
+      - name: Build backend
+        working-directory: monorepo/backend
         run: npm run build
