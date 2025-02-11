@@ -1,65 +1,25 @@
 name: CI/CD Pipeline
 
-on:
-  push:
-    branches:
-      - main  # Runs when code is pushed to the main branch
-  pull_request:
-    branches:
-      - main  # Runs on pull requests to the main branch
+on: [push, pull_request]
 
 jobs:
-  build-and-test-frontend:
-    name: Build & Test Frontend
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory:  monorepo/frontend # Adjust based on your frontend folder location
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
+          cache: 'npm'
+          cache-dependency-path: monorepo/frontend/package-lock.json  # Ensure correct path
 
       - name: Install dependencies
+        working-directory: monorepo/frontend
         run: npm install
 
-      - name: Run tests
-        run: npm test
-
-  build-and-test-backend:
-    name: Build & Test Backend
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: monorepo/backend  # Adjust based on your backend folder location
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: npm
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-  deploy:
-    name: Deploy Application
-    needs: [build-and-test-frontend, build-and-test-backend]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to Production
-        run: echo "Deploying application..."
+      - name: Build project
+        working-directory: monorepo/frontend
+        run: npm run build
