@@ -62,6 +62,15 @@ export default ({ posts }) => {
       >
         {new Date(post.publishedat).toLocaleString()}
       </p>
+      <h3
+        style={{
+          fontFamily: "Arial, sans-serif",
+          color: "#333",
+          fontSize: "1.5em",
+        }}
+      >
+        Author:{post.author}
+      </h3>
 
       {/* Render content */}
       <div

@@ -381,6 +381,7 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.String;
     blogId: Schema.Attribute.UID;
     content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;

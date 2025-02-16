@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import TawkToChat from "../components/tawk";
 
 const Blog = ({ posts }) => {
   const [visible, setVisible] = useState(7);
@@ -60,7 +61,7 @@ const Blog = ({ posts }) => {
           </Link>
         ))}
       </div>
-
+      <TawkToChat />
       {/* Load More Button */}
       {visible < posts.data.length && (
         <div style={{ textAlign: "center", marginTop: "20px" }}>
