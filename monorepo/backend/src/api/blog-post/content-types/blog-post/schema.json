@@ -34,6 +34,9 @@
     },
     "blogId": {
       "type": "uid"
+    },
+    "author": {
+      "type": "string"
     }
   }
 }
