@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import useFetch from "./hooks/useFetch";
 
 export default function App() {
-  const {loading, error, data} = useFetch('http://localhost:1337/api/blog-posts?populate=*');
+  const {loading, error, data} = useFetch('https://blogstrapi-001.onrender.com/api/blog-posts?populate=*');
   if (loading) return <p>loading...</p>
   if (error) return console.log(error)
 
