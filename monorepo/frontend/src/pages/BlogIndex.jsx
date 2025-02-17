@@ -4,7 +4,7 @@ import TawkToChat from "../components/tawk";
 
 const Blog = ({ posts }) => {
   const [visible, setVisible] = useState(7);
-  const strapiUrl = "http://localhost:1337"; // Change this to your Strapi URL
+  const strapiUrl = "https://blogstrapi-001.onrender.com"; // Change this to your Strapi URL
 
   const onLoadMoreClick = () => {
     setVisible((v) => v + 6);
