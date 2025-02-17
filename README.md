@@ -1,7 +1,9 @@
-# react-strapi-001
+![SwahiliPot Hub Logo](https://www.swahilipothub.co.ke/logo/logo.png)
 
-1. fork
-2. create branch from main branch
-3. mono-repo: reactjs(vite) + strapicms
-4. github actions: CI/CD -> pullrequests to the main branch
-5. blog
+## react-strapi-001 👋
+
++ ✅ fork.
++ ✅ create branch from main branch.
++ ✅ mono-repo: reactjs(vite) + strapicms.
++ ✅ github actions: CI/CD -> pullrequests to the main branch.
++ ✅ blog.
